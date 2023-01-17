@@ -7,7 +7,7 @@ const { TabPane } = Tabs;
 
 const Profile = () => {
   return (
-    <div className="container shadow-smz">
+    <div className="container ">
       <div className="mt-5 space-x-24">
         <h2 className="font-extrabold text-center uppercase underline hover:text-slate-700 ">
           Update Profile{" "}

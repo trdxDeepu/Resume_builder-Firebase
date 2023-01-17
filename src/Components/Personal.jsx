@@ -16,7 +16,7 @@ const { TextArea } = Input;
 const Personal = () => {
   return (
     <div>
-      <div className="row">
+      <div className="row ">
         <div className="col-md-4">
           <Form.Item
             name="firstName"
