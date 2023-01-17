@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap');
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgb(240,253,244 );
+}
