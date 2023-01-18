@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from 'react';
 import { Form } from "antd";
 import { Input } from "antd";
 import { AiFillGithub ,
@@ -8,15 +9,46 @@ import { AiFillGithub ,
    AiOutlineUser
   } 
 from "react-icons/ai";
-
+import { toast } from "react-toastify";
+import { UploadOutlined } from '@ant-design/icons';
+import { Button, message, Upload } from 'antd';
 import {CiLocationOn} from 'react-icons/ci'
+
 
 const { TextArea } = Input;
 
 const Personal = () => {
+
+  
+  
+  const props = {
+    name: 'file',
+    accept:".png, .jpeg, ",
+    action: '',
+        headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+      toast.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        toast.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
+
   return (
-    <div >
+    <div>
       <div className="row ">
+        <div className="m-2 p-2" > 
+        <p className="mb-2  font-serif" >Image</p>
+        <Upload {...props}>
+    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+  </Upload>
+  </div>
         <div className="col-md-4">
           <Form.Item
             name="firstName"

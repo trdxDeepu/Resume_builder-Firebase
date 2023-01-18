@@ -64,7 +64,7 @@ function SkillsEducation() {
                 onClick={() => add()}
                 block
                 icon={<PlusOutlined />}
-                className="bg-white  text-black "
+               
               >
                 Add Education
               </Button>
@@ -113,7 +113,7 @@ function SkillsEducation() {
             <Form.Item >
               <Button
                 type="dashed"
-                className="bg-white  text-black "
+                
                 onClick={() => add()}
                 block
                 icon={<PlusOutlined />}
