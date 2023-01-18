@@ -1,18 +1,23 @@
 import React from "react";
-import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
+
 
 const SignOut = () => {
-  const auth = getAuth();
+    const navigate = useNavigate();
+  
+    localStorage.removeItem("name")
+     navigate('/sign')
+     toast.success("🙌🙌 Signed out ������")
 
-  if (auth.currentUser) {
+
+  
     return (
       <div>
-        <p>
-          You are logged in as <strong>{auth.currentUser.email}</strong>
-        </p>
-        <button onClick={() => auth.signOut()}>Sign out</button>
+       
       </div>
     );
-  }
+  
 };
 export default SignOut;

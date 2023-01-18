@@ -19,6 +19,8 @@ const handleClick =async () => {
   const provider = new GoogleAuthProvider()
   const result = await signInWithPopup(auth, provider)
   const user = result.user;
+  console.log(user)
+  localStorage.setItem("name", user.displayName);
   //checking user already exist or not 
 
   const docRef = doc(db,"users",user.uid)

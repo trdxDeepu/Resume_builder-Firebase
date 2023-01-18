@@ -11,18 +11,15 @@ import { doc, setDoc } from "firebase/firestore";
 const { TabPane } = Tabs;
 
 const Profile = () => {
-  const [next, setNext] = useState(1);
 
-  const CHange = () => {
-    setNext(next + 1);
-    console.log(next);
-  };
+
+ 
 
   return (
     <div className="container ">
       <div className="mt-5 space-x-24">
         <h2 className="font-extrabold text-center uppercase underline hover:text-slate-700 ">
-          Update Profile{" "}
+          Update Profile
         </h2>
         <br />
 
@@ -31,14 +28,14 @@ const Profile = () => {
           layout="vertical"
           onFinish={() => {}}
         >
-          <Tabs defaultActiveKey='1'>
-            <TabPane tab="Personal Info" key='1'>
+          <Tabs defaultActiveKey="2">
+            <TabPane aria-button="1"  tab="Personal Info" key='1'>
               <Personal />
             </TabPane>
-            <TabPane tab="Skills and Education" key="2">
+            <TabPane aria-button="2" tab="Skills and Education" key="2">
               <SkillsEducation />
             </TabPane>
-            <TabPane tab="Experience / Projects" key="3">
+            <TabPane className="tab3 4"  tab="Experience / Projects" key="3">
               <ExperienceProjects />
             </TabPane>
           </Tabs>

@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/reset.css";
 import PrivateRoute from "./Components/PrivateRoute";
+import SignOut from "./SignInSignUp/SignOut";
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
           <Route path="/sign" element={<SignIn />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<ContactUs />} />
-
+          <Route path="/signout" element={<SignOut/>} />
           <Route path="/forgot" element={<ForgotPassword />} />
         </Routes>
       </BrowserRouter>
