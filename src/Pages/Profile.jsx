@@ -2,6 +2,9 @@ import React from "react";
 import { Form } from "antd";
 import { Tabs } from "antd";
 import Personal from "../Components/Personal";
+import SkillsEducation from "../Components/SkillsAndEducation";
+import ExperienceProjects from "../Components/ExperienceProjec";
+
 
 const { TabPane } = Tabs;
 
@@ -21,10 +24,10 @@ const Profile = () => {
               <Personal />
             </TabPane>
             <TabPane tab="Skills and Education" key="2">
-             
+             <SkillsEducation/>
             </TabPane>
             <TabPane tab="Experience / Projects" key="3">
-             
+             <ExperienceProjects/>
             </TabPane>
           </Tabs>
         
