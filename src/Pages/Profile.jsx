@@ -1,23 +1,22 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Form } from "antd";
-import { Tabs } from "antd"
+import { Tabs } from "antd";
 import Personal from "../Components/Personal";
 import SkillsEducation from "../Components/SkillsAndEducation";
 import ExperienceProjects from "../Components/ExperienceProjec";
-import {db} from '../Firebase' 
+import { db } from "../Firebase";
 import { getAuth } from "firebase/auth";
-import { doc , setDoc } from 'firebase/firestore'
+import { doc, setDoc } from "firebase/firestore";
 
 const { TabPane } = Tabs;
 
 const Profile = () => {
+  const [next, setNext] = useState(1);
 
-
- 
-
-
- 
-
+  const CHange = () => {
+    setNext(next + 1);
+    console.log(next);
+  };
 
   return (
     <div className="container ">
@@ -32,8 +31,8 @@ const Profile = () => {
           layout="vertical"
           onFinish={() => {}}
         >
-          <Tabs defaultActiveKey="1">
-            <TabPane tab="Personal Info" key="1" >
+          <Tabs defaultActiveKey='1'>
+            <TabPane tab="Personal Info" key='1'>
               <Personal />
             </TabPane>
             <TabPane tab="Skills and Education" key="2">
@@ -43,24 +42,25 @@ const Profile = () => {
               <ExperienceProjects />
             </TabPane>
           </Tabs>
-          <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" >
-         Next
-        </button>
         </Form>
       </div>
       <div className="flex justify-around mt-4">
-      <div className=" mx-14 left-6">
-        {" "}
-        <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-          Prev
-        </button>
+        <div className=" mx-14 left-6">
+          {" "}
+          <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            Prev
+          </button>
+        </div>
+        <div className=" ">
+          {" "}
+          <button
+            class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            onClick={CHange}
+          >
+            Next
+          </button>
+        </div>
       </div>
-      <div className=" ">
-        {" "}
-       
-      </div>
-      </div>
-      
     </div>
   );
 };

@@ -1,7 +1,33 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import {getAuth, onAuthStateChanged ,signOut } from 'firebase/auth'
+import SignOut from "../SignInSignUp/SignOut";
+
 
 const Header = () => {
+
+
+  const [pageState , setPageState] = useState("Sign In")
+
+  const auth = getAuth()
+
+  
+
+
+
+  useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+      
+        if(user){
+          setPageState("Sign In")
+        }
+        else{
+          setPageState("Sign Out")
+        }
+
+      })
+  },[auth])
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -56,7 +82,9 @@ const Header = () => {
               }`}
               onClick={() => navigate("/sign")}
             >
-              Sign In
+             {
+              pageState
+             }
             </li>
           </ul>
         </div>

@@ -13,9 +13,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/reset.css";
 import PrivateRoute from "./Components/PrivateRoute";
 
+
 function App() {
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Header />
         <Routes>
@@ -30,6 +32,8 @@ function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
         </Routes>
       </BrowserRouter>
+      
+            
       <ToastContainer
         position="bottom-center"
         autoClose={2000}
