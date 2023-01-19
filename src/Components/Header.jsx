@@ -1,35 +1,14 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {getAuth, onAuthStateChanged ,signOut } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignOut from "../SignInSignUp/SignOut";
 
-
 const Header = () => {
-
-
-  // const [pageState , setPageState] = useState("Sign In")
-
-  const auth = getAuth()
-
-  
-
-
-
-  // useEffect(() => {
-  //     onAuthStateChanged(auth, (user) => {
-      
-  //       if(user){
-  //         setPageState("Sign In")
-  //       }
-  //       else{
-  //         setPageState("Sign")
-  //       }
-
-  //     })
-  // },[auth])
+  const [PageState, setPageState] = useState("Sign In");
 
   const location = useLocation();
   const navigate = useNavigate();
+  const auth = getAuth()
 
   function pathMatch(route) {
     if (route === location.pathname) {
@@ -37,7 +16,17 @@ const Header = () => {
     }
   }
 
-  const getName = localStorage.getItem("name") ;
+  useEffect(()=>{
+    onAuthStateChanged(auth,(user)=>{
+
+      if(user){
+        setPageState("Profile");}
+        else{
+          setPageState("Sign In");
+        }
+
+    })
+  },[auth])
 
   return (
     <div className="bg-white border-b-0 shadow-sm sticky top-0 z-40 ">
@@ -51,9 +40,7 @@ const Header = () => {
           />
         </div>
         <div>
-                        
-                   <ul className="flex space-x-10 ">
-                   
+          <ul className="flex space-x-10 ">
             <li
               className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent 
               ${pathMatch("/") && "text-black border-b-red-500"}`}
@@ -62,14 +49,14 @@ const Header = () => {
               Home
             </li>
 
-            <li
+            {/* <li
               className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent  ${
                 pathMatch("/profile") && "text-black border-b-red-500"
               }`}
               onClick={() => navigate("/profile")}
             >
               Profile
-            </li>
+            </li> */}
 
             <li
               className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent  ${
@@ -79,30 +66,24 @@ const Header = () => {
             >
               Contact Us
             </li>
-            {!getName && (
-            <li
 
-              className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent  ${
-                pathMatch("/sign") && "text-black border-b-red-500"
-              }`}
-              onClick={() => navigate("/sign")}
-            >
-             Sign In
-            </li>
-             )
-             }
-             {getName && (
             <li
-
-              className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent  ${
-                pathMatch("/sign") && "text-black border-b-red-500"
-              }`}
-              onClick={() => navigate("/signout")}
+              className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent 
+               ${
+                 (pathMatch("/sign") || pathMatch("/profile")) &&
+                 "text-black border-b-red-500"
+               }`}
+              onClick={() => navigate("/profile")}
             >
-             Sign Out
+              {PageState}
             </li>
-             ) 
-            }
+            
+          
+            <li>
+              <SignOut/>
+              </li>    
+
+           
           </ul>
         </div>
       </header>
