@@ -37,7 +37,7 @@ const SignIn = () => {
         password
       );
       if (userCredential.user) {
-        navigate("/");
+        navigate("/profile");
         toast.success("🙌🙌 Successfully signed in!");
 
         localStorage.setItem("name", userCredential.user.displayName);

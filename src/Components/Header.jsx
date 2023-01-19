@@ -15,18 +15,18 @@ const Header = () => {
 
 
 
-  useEffect(() => {
-      onAuthStateChanged(auth, (user) => {
+  // useEffect(() => {
+  //     onAuthStateChanged(auth, (user) => {
       
-        if(user){
-          setPageState("Sign In")
-        }
-        else{
-          setPageState("Sign")
-        }
+  //       if(user){
+  //         setPageState("Sign In")
+  //       }
+  //       else{
+  //         setPageState("Sign")
+  //       }
 
-      })
-  },[auth])
+  //     })
+  // },[auth])
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Header = () => {
   const getName = localStorage.getItem("name") ;
 
   return (
-    <div className="bg-white border-b-0 shadow-sm sticky top-0 z-50 ">
+    <div className="bg-white border-b-0 shadow-sm sticky top-0 z-40 ">
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img

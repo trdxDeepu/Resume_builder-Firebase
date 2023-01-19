@@ -1,6 +1,6 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom';
-import {UseAuthState} from '../Hooks/UseAuthState'
+import { Outlet, Navigate } from "react-router-dom";
+import {  UseAuthState } from "../Hooks/UseAuthState";
+import Loader from "./Loader";
 
 
 
@@ -10,8 +10,8 @@ const PrivateRoute = () => {
     const {loggedIn , loading} = UseAuthState();
 
     if(loading) {
-        return <p>loading...</p>
-    }
+        return <Loader/>
+         }
   
     return loggedIn ? <Outlet /> : <Navigate to ="/sign" />
         
