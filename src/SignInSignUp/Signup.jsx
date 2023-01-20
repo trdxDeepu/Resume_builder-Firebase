@@ -58,6 +58,8 @@ const Signup = () => {
       toast.error("🤷‍♀️🤷‍♂️Something Went Wrong")
     }
   };
+
+ 
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 ">Sign Up</h1>

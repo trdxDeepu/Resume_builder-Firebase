@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import OAuth from "../Components/OAuth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { db } from "../Firebase";
-import { async } from "@firebase/util";
+
 const SignIn = () => {
   const navigate = useNavigate();
 

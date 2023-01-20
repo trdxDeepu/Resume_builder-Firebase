@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form } from "antd";
 import { Tabs } from "antd";
 import Personal from "../Components/Personal";
 import SkillsEducation from "../Components/SkillsAndEducation";
 import ExperienceProjects from "../Components/ExperienceProjec";
-import { db } from "../Firebase";
-import { getAuth } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 
 const { TabPane } = Tabs;
 
@@ -40,8 +37,8 @@ const Profile = () => {
       <div className="flex justify-around mt-4">
         <div className=" ">
           {" "}
-          <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-            Next
+          <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-lg">
+            Update Profile 
           </button>
         </div>
       </div>

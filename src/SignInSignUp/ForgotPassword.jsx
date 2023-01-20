@@ -1,4 +1,4 @@
-import { getAuth, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import React, { useState } from "react";
 
 

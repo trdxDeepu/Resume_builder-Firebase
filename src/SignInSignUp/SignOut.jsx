@@ -10,6 +10,8 @@ const SignOut = () => {
   function pathMatch(route) {
     if (route === location.pathname) {
       return true;
+      console.log(location.pathname);
+
     }
   }
 
@@ -25,7 +27,7 @@ const SignOut = () => {
       <button
         className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent 
       ${
-        pathMatch("/sign") && "invisible"
+        (pathMatch("/sign") && "invisible" || pathMatch("/signup") && "invisible")
       } text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out cursor-pointer
       `}
         onClick={logOut}

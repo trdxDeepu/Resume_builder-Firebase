@@ -2,7 +2,7 @@ import React from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
 import { db } from '../Firebase';
-import { getAuth ,signOut} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { getDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore';
@@ -39,11 +39,7 @@ const handleClick =async () => {
   toast.success("🙌🙌 Successfully signed in")
   navigate('/')
 
-  // signOut(auth).then(()=>{
-  //   toast.success("Signed out")
-  // } ).catch((err)=>{
-  //   toast.error("an error")
-  // })
+
 
  }
  catch (err){
