@@ -24,7 +24,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Company"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -39,7 +39,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Years"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500 " 
                         />
                       </Form.Item>
                     </div>
@@ -54,7 +54,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Place"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -68,7 +68,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Year Range"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -116,7 +116,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Title"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -131,7 +131,7 @@ function ExperienceProjects() {
                       >
                         <TextArea
                           placeholder="Description"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -145,7 +145,7 @@ function ExperienceProjects() {
                       >
                         <Input
                           placeholder="Year Range"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>

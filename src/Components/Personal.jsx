@@ -22,10 +22,21 @@ const Personal = () => {
     email: "",
     mobileNumber: "",
     github: "",
-    linkden: "",
+    linkeden: "",
     carrierObjective: "",
     address: "",
   });
+
+  const {
+    firstName,
+    lastName,
+    email,
+    mobileNumber,
+    github,
+    linkeden,
+    carrierObjective,
+    address,
+  } = formData;
 
   const props = {
     name: "file",
@@ -60,9 +71,11 @@ const Personal = () => {
             name="firstName"
             label="First Name"
             id="firstName"
+            value={firstName}
             rules={[{ required: true }]}
           >
-            <Input className="rounded-lg shadow-md" placeholder="First Name" />
+            <Input className="rounded-lg shadow- text-gray-500" 
+            placeholder="First Name" />
             <AiOutlineUser className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>
@@ -71,9 +84,11 @@ const Personal = () => {
             name="lastName"
             label="Last Name"
             id="lastName"
+            value={lastName}
             rules={[{ required: true }]}
           >
-            <Input className="rounded-lg shadow-md" placeholder="Last Name" />
+            <Input className="rounded-lg shadow-md text-gray-500" 
+            placeholder="Last Name" />
             <AiOutlineUser className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>
@@ -82,9 +97,11 @@ const Personal = () => {
             name="email"
             label="Email address"
             id="email"
+            value={email}
             rules={[{ required: true }]}
           >
-            <Input className="rounded-lg shadow-md" placeholder="Email" />
+            <Input className="rounded-lg shadow-md text-gray-500" 
+            placeholder="Email" />
             <AiFillMail className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>
@@ -93,10 +110,11 @@ const Personal = () => {
             name="mobileNumber"
             label="Mobile Number"
             id="mobileNumber"
+            value={mobileNumber}
             rules={[{ required: true }]}
           >
             <Input
-              className="rounded-lg shadow-md"
+              className="rounded-lg shadow-md text-gray-500"
               placeholder="Mobile Number"
             />
             <AiFillMobile className="absolute right-3 top-3 w-10 h-5 " />
@@ -107,10 +125,11 @@ const Personal = () => {
             name="github"
             label="Github"
             id="github"
+            value={github}
             rules={[{ required: true }]}
           >
             <Input
-              className="rounded-lg shadow-md "
+              className="rounded-lg shadow-md  text-gray-500"
               placeholder="Github Link"
             />
             <AiFillGithub className="absolute right-3 top-3 w-10 h-5 " />
@@ -121,10 +140,11 @@ const Personal = () => {
             name="linkeden"
             label="Linkeden"
             id="linkden"
+            value={linkeden}
             rules={[{ required: true }]}
           >
             <Input
-              className="rounded-lg shadow-md"
+              className="rounded-lg shadow-md text-gray-500 "
               placeholder="Linkden Link"
             />
             <AiFillLinkedin className="absolute right-3 top-3 w-10 h-5 " />
@@ -134,12 +154,14 @@ const Personal = () => {
         <div className="col-md-12">
           <Form.Item
             name="carrierObjective"
+           
             label="Carrier Objective"
             id="carrierObjective"
+            value={carrierObjective}
             rules={[{ required: true }]}
           >
             <TextArea
-              className="rounded-lg shadow-md"
+              className="rounded-lg shadow-md text-gray-500"
               placeholder="Carrer Objective"
             />
           </Form.Item>
@@ -149,9 +171,14 @@ const Personal = () => {
             name="address"
             label="Address"
             id="address"
+           
+            value={address}
             rules={[{ required: true }]}
           >
-            <TextArea className="rounded-lg shadow-md" placeholder="Address" />
+            <TextArea
+              className="text-gray-500 rounded-lg shadow-md font-medium"
+              placeholder="Address "
+            />
             <CiLocationOn className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>

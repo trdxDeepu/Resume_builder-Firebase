@@ -23,7 +23,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Qualification"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -38,7 +38,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Percentage"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -53,7 +53,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Institution"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -67,7 +67,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Year Range"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -115,7 +115,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Technology"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
@@ -130,7 +130,7 @@ function SkillsEducation() {
                       >
                         <Input
                           placeholder="Rating"
-                          className="rounded-lg shadow-md"
+                          className="rounded-lg shadow-md text-gray-500"
                         />
                       </Form.Item>
                     </div>
