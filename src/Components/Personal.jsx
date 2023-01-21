@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "antd";
 import { Input } from "antd";
 import {
   AiFillGithub,
   AiFillLinkedin,
-  AiOutlineMobile,
-  AiOutlineMail,
+  AiFillMobile,
+  AiFillMail,
   AiOutlineUser,
 } from "react-icons/ai";
 import { toast } from "react-toastify";
@@ -16,6 +16,17 @@ import { CiLocationOn } from "react-icons/ci";
 const { TextArea } = Input;
 
 const Personal = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",
+    github: "",
+    linkden: "",
+    carrierObjective: "",
+    address: "",
+  });
+
   const props = {
     name: "file",
     accept: ".png, .jpeg, ",
@@ -48,6 +59,7 @@ const Personal = () => {
           <Form.Item
             name="firstName"
             label="First Name"
+            id="firstName"
             rules={[{ required: true }]}
           >
             <Input className="rounded-lg shadow-md" placeholder="First Name" />
@@ -58,6 +70,7 @@ const Personal = () => {
           <Form.Item
             name="lastName"
             label="Last Name"
+            id="lastName"
             rules={[{ required: true }]}
           >
             <Input className="rounded-lg shadow-md" placeholder="Last Name" />
@@ -65,26 +78,37 @@ const Personal = () => {
           </Form.Item>
         </div>
         <div className="col-md-4">
-          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+          <Form.Item
+            name="email"
+            label="Email address"
+            id="email"
+            rules={[{ required: true }]}
+          >
             <Input className="rounded-lg shadow-md" placeholder="Email" />
-            <AiOutlineMail className="absolute right-3 top-3 w-10 h-5 " />
+            <AiFillMail className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>
         <div className="col-md-4">
           <Form.Item
             name="mobileNumber"
             label="Mobile Number"
+            id="mobileNumber"
             rules={[{ required: true }]}
           >
             <Input
               className="rounded-lg shadow-md"
               placeholder="Mobile Number"
             />
-            <AiOutlineMobile className="absolute right-3 top-3 w-10 h-5 " />
+            <AiFillMobile className="absolute right-3 top-3 w-10 h-5 " />
           </Form.Item>
         </div>
         <div className="col-md-4">
-          <Form.Item name="github" label="Github" rules={[{ required: true }]}>
+          <Form.Item
+            name="github"
+            label="Github"
+            id="github"
+            rules={[{ required: true }]}
+          >
             <Input
               className="rounded-lg shadow-md "
               placeholder="Github Link"
@@ -96,6 +120,7 @@ const Personal = () => {
           <Form.Item
             name="linkeden"
             label="Linkeden"
+            id="linkden"
             rules={[{ required: true }]}
           >
             <Input
@@ -110,6 +135,7 @@ const Personal = () => {
           <Form.Item
             name="carrierObjective"
             label="Carrier Objective"
+            id="carrierObjective"
             rules={[{ required: true }]}
           >
             <TextArea
@@ -122,6 +148,7 @@ const Personal = () => {
           <Form.Item
             name="address"
             label="Address"
+            id="address"
             rules={[{ required: true }]}
           >
             <TextArea className="rounded-lg shadow-md" placeholder="Address" />

@@ -3,7 +3,7 @@ import { Form } from "antd";
 import { Tabs } from "antd";
 import Personal from "../Components/Personal";
 import SkillsEducation from "../Components/SkillsAndEducation";
-import ExperienceProjects from "../Components/ExperienceProjec";
+import ExperienceProjects from "../Components/ExperienceProject";
 
 const { TabPane } = Tabs;
 
@@ -11,9 +11,13 @@ const Profile = () => {
   return (
     <div className="container ">
       <div className="mt-5 space-x-24">
-        <h2 className="font-extrabold text-center uppercase underline hover:text-slate-700 ">
+        <h1
+          className="font-extrabold  text-center 
+        uppercase underline 
+        hover:text-slate-700 "
+        >
           Update Profile
-        </h2>
+        </h1>
         <br />
 
         <Form
@@ -37,8 +41,13 @@ const Profile = () => {
       <div className="flex justify-around mt-4">
         <div className=" ">
           {" "}
-          <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-lg">
-            Update Profile 
+          <button
+            className=" bg-blue-600 hover:bg-blue-700
+           text-white font-bold py-2 px-4 
+           border font-serif border-blue-700 
+           rounded-lg"
+          >
+            Update Profile
           </button>
         </div>
       </div>

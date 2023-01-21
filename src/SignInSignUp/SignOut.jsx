@@ -29,7 +29,7 @@ const SignOut = () => {
         (pathMatch("/sign") && "invisible") ||
         (pathMatch("/signup") && "invisible") ||
         (pathMatch("/forgot") && "invisible")
-      } text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out cursor-pointer
+      } text-black-600 hover:text-red-800 transition duration-200 ease-in-out cursor-pointer
       `}
         onClick={logOut}
       >
