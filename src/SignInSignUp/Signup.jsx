@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import OAuth from "../Components/OAuth";
+import OAuth from "./OAuth";
 import { getAuth, createUserWithEmailAndPassword ,updateProfile } from "firebase/auth";
 import { db } from "../Firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
