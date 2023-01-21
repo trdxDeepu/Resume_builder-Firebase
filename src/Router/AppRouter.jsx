@@ -7,9 +7,9 @@ import SignIn from "../SignInSignUp/SignIn";
 
 import Signup from "../SignInSignUp/Signup";
 import ForgotPassword from "../SignInSignUp/ForgotPassword";
-import Header from "../Components/Header";
+import Header from "../Pages/Header";
 import ContactUs from "../Pages/ContactUs";
-import Profile from "../Pages/Profile";
+import Profile from "../Components/Profile";
 
 const AppRouter = () => {
   return (

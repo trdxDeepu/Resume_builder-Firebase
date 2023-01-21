@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <AppRouter />
 
-      <ToastContainer
-        position="bottom-center"
+      <ToastContainer 
+       className="mt-12"
+        position="top-right"
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}

@@ -1,9 +1,9 @@
 import React from "react";
 import { Form } from "antd";
 import { Tabs } from "antd";
-import Personal from "../Components/Personal";
-import SkillsEducation from "../Components/SkillsAndEducation";
-import ExperienceProjects from "../Components/ExperienceProject";
+import Personal from "./Personal";
+import SkillsEducation from "./SkillsAndEducation";
+import ExperienceProjects from "./ExperienceProject";
 
 const { TabPane } = Tabs;
 
