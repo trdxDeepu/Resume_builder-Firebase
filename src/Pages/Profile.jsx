@@ -42,6 +42,7 @@ function Profile() {
     percentage: "",
   };
   const [educationUser, setEducationUser] = useState([userTemplate]);
+
   const addUser = () => {
     setEducationUser([...educationUser, userTemplate]);
   };
@@ -54,7 +55,7 @@ function Profile() {
 
   const handleEducationChange = (e, index) => {
     const updatedUser = [...educationUser];
-    updatedUser[index][e.target.name] = event.target.value;
+    updatedUser[index][e.target.name] = e.target.value;
     setEducationUser(updatedUser);
   };
 
@@ -62,10 +63,26 @@ function Profile() {
 
   const userTemp = {
     skills: "",
-    rating: " ",
+    rating: "",
   };
 
-  const [skills, setSkills] = useState([userTemp]);
+  const [userSkills, setUserSkills] = useState([userTemp]);
+
+  const addUserSkills = () => {
+    setUserSkills([...userSkills, userTemp]);
+  };
+
+  const removeUserSkills = (index) => {
+    const removedUser = [...userSkills];
+    removedUser.splice(index, 1);
+    setUserSkills(removedUser);
+  };
+
+  const handleSkillsChange = (e, index) => {
+    const updatedUserSkills = [...userSkills];
+    updatedUserSkills[index][e.target.name] = e.target.value;
+    setUserSkills(updatedUserSkills);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,10 +96,19 @@ function Profile() {
     const educationCopy = educationUser.map((edu, index) => {
       return {
         [`educationUser ${index}`]: {
-          qualification: edu.qualification,
-          percentage: edu.percentage,
-          institution: edu.institution,
-          range: edu.year,
+          Qualification: edu.qualification,
+          Percentage: edu.percentage,
+          Institution: edu.institution,
+          Range: edu.year,
+        },
+      };
+    });
+
+    const skillCopy = userSkills.map((skill, index) => {
+      return {
+        [`SkillsUser ${index}`]: {
+          Skills: skill.skills,
+          Rating: skill.rating,
         },
       };
     });
@@ -94,6 +120,7 @@ function Profile() {
         await setDoc(doc(db, "users", user.uid), {
           Personal: personalInfoCopy,
           Education: educationCopy,
+          Skills: skillCopy,
         });
 
         toast.success(" 🙌🙌 Profile Updated SuccessFully");
@@ -257,34 +284,40 @@ function Profile() {
 
                 <div>
                   <span>Skills</span>
-                  <div className="flex space-x-6 m-4">
-                    <Input
-                      placeholder="Skill"
-                      htmlSize={20}
-                      width="auto"
-                      name="skill"
-                    />
-                    <Input
-                      placeholder="Rating"
-                      htmlSize={20}
-                      width="auto"
-                      name="skill"
-                    />
-                    <div className=" right-3 flex space-x-10 text-2xl m-2">
-                      <AiOutlinePlusSquare
-                        className="text-blue-500 hover:text-blue-700 active:shadow-md active:text-blue-800 "
-                        onClick={addUserSkills}
+                  {userSkills.map((skill, index) => (
+                    <div className="flex space-x-6 m-4" key={index}>
+                      <Input
+                        placeholder="Skill"
+                        htmlSize={20}
+                        width="auto"
+                        name="skills"
+                        value={skill.skills}
+                        onChange={(e) => handleSkillsChange(e, index)}
                       />
-                      <AiFillDelete
-                        className="text-orange-500 hover:text-orange-600 active:text-orange-700 active:shadow-xl "
-                        onClick={() =>
-                          index == 0
-                            ? toast.error("😡😡😡😡")
-                            : removeUserSkills(index)
-                        }
+                      <Input
+                        placeholder="Rating"
+                        htmlSize={26}
+                        width="auto"
+                        name="rating"
+                        value={skill.rating}
+                        onChange={(e) => handleSkillsChange(e, index)}
                       />
+                      <div className=" right-3 flex space-x-10 text-2xl m-2">
+                        <AiOutlinePlusSquare
+                          className="text-blue-500 hover:text-blue-700 active:shadow-md active:text-blue-800 "
+                          onClick={addUserSkills}
+                        />
+                        <AiFillDelete
+                          className="text-orange-500 hover:text-orange-600 active:text-orange-700 active:shadow-xl "
+                          onClick={() =>
+                            index == 0
+                              ? toast.error("😡😡😡😡")
+                              : removeUserSkills(index)
+                          }
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </TabPanel>
             </TabPanels>
