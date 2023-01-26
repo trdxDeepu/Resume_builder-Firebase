@@ -16,10 +16,12 @@ const AppRouter = () => {
     <div>
       <BrowserRouter>
         <Header />
+
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
           </Route>
+
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>

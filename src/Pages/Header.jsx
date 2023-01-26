@@ -75,9 +75,9 @@ const Header = () => {
             </li>
             
           
-            <li>
+            
               <SignOut/>
-              </li>    
+               
 
            
           </ul>

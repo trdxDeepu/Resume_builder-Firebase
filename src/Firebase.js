@@ -8,13 +8,14 @@ const firebaseConfig = {
   projectId: "resume-builder-caf5d",
   storageBucket: "resume-builder-caf5d.appspot.com",
   messagingSenderId: "850423362565",
-  appId: "1:850423362565:web:2a0f5c0a40761e58cb986c"
+  appId: "1:850423362565:web:2a0f5c0a40761e58cb986c",
+  databaseURL:"https://resume-builder-caf5d-default-rtdb.firebaseio.com/"
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app =  initializeApp(firebaseConfig);
 
-export const db = getFirestore() ;
+export const db = getFirestore(app) ;
 
 
 
