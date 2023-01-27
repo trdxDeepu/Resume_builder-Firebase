@@ -8,13 +8,19 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Textarea } from "@chakra-ui/react";
-
+import { Text } from "@chakra-ui/react";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { Form } from "antd";
-import { AiFillDelete, AiOutlinePlusSquare } from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiOutlinePlusSquare,
+  AiOutlineMail,
+  AiFillGithub,
+  AiFillLinkedin,
+} from "react-icons/ai";
 // import { getDatabase, set, ref } from "firebase/database";
 import { toast } from "react-toastify";
 function Profile() {
@@ -176,14 +182,38 @@ function Profile() {
       };
     });
 
+    const experienceCopy = userExp.map((exp, index) => {
+      return {
+        [`experience ${index}`]: {
+          Company: exp.company,
+          Position: exp.position,
+          StartDate: exp.startDate,
+          EndDate: exp.endDate,
+          Description: exp.description,
+        },
+      };
+    });
+
+    const projectCopy = userProject.map((project, index) => {
+      return {
+        [`project ${index}`]: {
+          Title: project.title,
+          Year: project.year,
+          Description: project.description,
+        },
+      };
+    });
+
     try {
       if (user) {
         console.log(user.displayName);
 
-        await setDoc(doc(db, "users", user.displayName), {
+        await setDoc(doc(db, "users", user.uid), {
           Personal: personalInfoCopy,
           Education: educationCopy,
           Skills: skillCopy,
+          Experience: experienceCopy,
+          Projects: projectCopy,
         });
 
         toast.success(" 🙌🙌 Profile Updated SuccessFully");
@@ -196,17 +226,17 @@ function Profile() {
 
   return (
     <>
-      <div className=" m-2 p-2 mt-4 container shadow-md  ">
+      <div className="  m-2 p-2 mt-4 container-fluid shadow-md  ">
         <Tabs index={tabIndex} onChange={handleTabsChange}>
           <Form onSubmit={handleSubmit}>
-            <TabList className="flex m-2 gap-16   ">
-              <Tab>Personal Information </Tab>
-              <Tab>Education and Skills</Tab>
+            <TabList className="flex m-2 gap-16 font-serif text-2xl font-bold  ">
+              <Tab >Personal Information </Tab>
+              <Tab >Education and Skills</Tab>
               <Tab>Experience and Projects</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel className="row mt-2">
-                <div className="col-md-4 text-uppercase ">
+              <TabPanel className="row mt-2 text-2xl font-serif">
+                <div className="col-md-4  text-uppercase  ">
                   <FormControl isRequired id="firstName">
                     <FormLabel className=" m-1 p-1 strong">
                       First name
@@ -220,7 +250,7 @@ function Profile() {
                     <FormErrorMessage>First name is required</FormErrorMessage>
                   </FormControl>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-uppercase">
                   <FormControl isRequired id="lastName">
                     <FormLabel className="m-1 p-1">Last name</FormLabel>
                     <Input
@@ -232,11 +262,11 @@ function Profile() {
                     <FormErrorMessage>Last name is required</FormErrorMessage>
                   </FormControl>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-uppercase">
                   <FormControl isRequired id="email">
                     <FormLabel className="m-1 p-1">Email address</FormLabel>
                     <InputGroup>
-                      <InputLeftAddon children="+91" />
+                      <InputLeftAddon children={<AiOutlineMail />} />
                       <Input
                         type="email"
                         placeholder="Email"
@@ -249,7 +279,7 @@ function Profile() {
                     <FormErrorMessage>Email is required</FormErrorMessage>
                   </FormControl>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-uppercase">
                   <FormControl isRequired id="mobileNumber">
                     <FormLabel className="m-1 p-1">Mobile Number </FormLabel>
                     <InputGroup>
@@ -267,30 +297,35 @@ function Profile() {
                     </FormErrorMessage>
                   </FormControl>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-uppercase">
                   <FormControl id="github">
                     <FormLabel className="m-1 p-1">Github</FormLabel>
-                    <Input
-                      placeholder="Github"
-                      value={personalInfo.github}
-                      onChange={handlePersonalInfoChange}
-                      name="github"
-                    />
+                    <InputGroup>
+                      <InputLeftAddon children={<AiFillGithub />} />
+                      <Input
+                        placeholder="Github"
+                        value={personalInfo.github}
+                        onChange={handlePersonalInfoChange}
+                        name="github"
+                      />
+                    </InputGroup>
                   </FormControl>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-uppercase">
                   <FormControl id="linkeden">
                     <FormLabel className="m-1 p-1"> Linkedin </FormLabel>
-                    <Input
-                      placeholder="Linkedin"
-                      colorScheme="linkedin"
-                      value={personalInfo.linkeden}
-                      onChange={handlePersonalInfoChange}
-                      name="linkeden"
-                    />
+                    <InputGroup>
+                      <InputLeftAddon children={<AiFillLinkedin />} />
+                      <Input
+                        placeholder="linkeden"
+                        value={personalInfo.linkeden}
+                        onChange={handlePersonalInfoChange}
+                        name="linkeden"
+                      />
+                    </InputGroup>
                   </FormControl>
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12 text-uppercase">
                   <FormControl id="carrerObjective">
                     <FormLabel className="m-1 p-1"> Carrer Objective</FormLabel>
                     <Textarea
@@ -301,7 +336,7 @@ function Profile() {
                     />
                   </FormControl>
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12 text-uppercase">
                   <FormControl id="address ">
                     <FormLabel className="m-1 p-1"> Address </FormLabel>
                     <Textarea
@@ -313,7 +348,7 @@ function Profile() {
                   </FormControl>
                 </div>
               </TabPanel>
-              <TabPanel className="font-serif">
+              <TabPanel className="font-serif text-lg">
                 <span>Education</span>
 
                 {educationUser.map((user, index) => (
@@ -405,7 +440,7 @@ function Profile() {
                   ))}
                 </div>
               </TabPanel>
-              <TabPanel className="font-serif">
+              <TabPanel className="font-serif text-lg">
                 <div>
                   <h5>
                     <span>Experience</span>
@@ -434,7 +469,7 @@ function Profile() {
                         type="date"
                         htmlSize={26}
                         width="auto"
-                        name="year"
+                        name="startDate"
                         value={exp.startDate}
                         onChange={(e) => handleExpChange(e, index)}
                       />
@@ -443,7 +478,7 @@ function Profile() {
                         type="date"
                         htmlSize={26}
                         width="auto"
-                        name="year"
+                        name="endDate"
                         value={exp.endDate}
                         onChange={(e) => handleExpChange(e, index)}
                       />
@@ -491,7 +526,7 @@ function Profile() {
                         value={project.year}
                         onChange={(e) => handleUserProject(e, index)}
                       />
-                      <div className="col-md-8">
+                      <div className="">
                         <Textarea
                           placeholder="Project Description"
                           htmlSize={40}
