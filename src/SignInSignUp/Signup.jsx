@@ -4,10 +4,14 @@ import { toast } from "react-toastify";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import OAuth from "./OAuth";
-import { getAuth, createUserWithEmailAndPassword ,updateProfile } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { db } from "../Firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,48 +22,43 @@ const Signup = () => {
     password: "",
   });
 
-  const {name, email, password } = formData;
+  const { name, email, password } = formData;
 
   const navigate = useNavigate();
 
-
   const handleChange = (e) => {
-    
-
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const auth = getAuth();
     try {
-      const useCredential =  await createUserWithEmailAndPassword(
+      const useCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
       updateProfile(auth.currentUser, {
-        displayName:name,
-      })
+        displayName: name,
+      });
       const user = useCredential.user;
-      const formDataCopy = {...formData}
-      delete formData.password
+      const formDataCopy = { ...formData };
+      delete formData.password;
       formDataCopy.timestamp = serverTimestamp();
-      
-      await setDoc(doc(db,"users",user.uid ),
-      formDataCopy)
-      toast.success("🙌🙌 Signed in Success")
-      navigate('/')
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      toast.success("🙌🙌 Signed in Success");
+      navigate("/");
     } catch (err) {
-      toast.error("🤷‍♀️🤷‍♂️Something Went Wrong")
+      toast.error("🤷‍♀️🤷‍♂️Something Went Wrong");
     }
   };
 
- 
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 ">Sign Up</h1>
@@ -74,7 +73,7 @@ const Signup = () => {
 
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
           <form onSubmit={handleSubmit}>
-          <input
+            <input
               type="text"
               id="name"
               value={name}

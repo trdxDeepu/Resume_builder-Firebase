@@ -30,6 +30,7 @@ function Profile() {
   };
 
   //Personal Information
+
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
     lastName: "",
@@ -44,6 +45,9 @@ function Profile() {
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo({ ...personalInfo, [name]: value });
+    if (e.target.files) {
+      setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.files });
+    }
   };
 
   //Details of Education
@@ -230,13 +234,27 @@ function Profile() {
         <Tabs index={tabIndex} onChange={handleTabsChange}>
           <Form onSubmit={handleSubmit}>
             <TabList className="flex m-2 gap-16 font-serif text-2xl font-bold  ">
-              <Tab >Personal Information </Tab>
-              <Tab >Education and Skills</Tab>
+              <Tab>Personal Information </Tab>
+              <Tab>Education and Skills</Tab>
               <Tab>Experience and Projects</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel className="row mt-2 text-2xl font-serif">
-                <div className="col-md-4  text-uppercase  ">
+              <TabPanel className="row mt-2  font-serif">
+                {/* <div className="col-md-12">
+                  <FormLabel className=" m-1 p-1 ">
+                    Upload Photo
+                  </FormLabel>
+                  <input
+                   className=""
+                    type="file"
+                    name="photo"
+                    accept=".jpg,.jpeg,.png"
+                    placeholder="image"
+                    value={personalInfo.photo}
+                    onChange={handlePersonalInfoChange}
+                  />
+                </div> */}
+                <div className="col-md-4  text-uppercase text-2xl ">
                   <FormControl isRequired id="firstName">
                     <FormLabel className=" m-1 p-1 strong">
                       First name
