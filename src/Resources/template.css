@@ -1,0 +1,287 @@
+.home .template{
+    margin: 20px;
+    box-shadow: 0 0 3px gray;
+   padding: 20px;
+   position: relative;
+   width: 350px;
+}
+
+.home .template .text{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+.home .template .text:hover{
+    background-color: black;
+    opacity: 0.8;
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+}
+.home .template button{
+    background-color: white !important;
+    color: black !important;
+    font-size: 16px !important;
+    padding: 0 20px;
+}
+
+
+
+/* template1 styling */
+.template1-parent{
+    color: rgba(0, 0, 0, 0.699) !important;
+    padding: 100px;
+    box-shadow: 5px 21px 20px 20px #3d3f4238;
+}
+.template1-parent h1{
+    color: rgba(0, 0, 0, 0.699) !important;
+    font-size: 35px;
+    font-weight: bold;
+}
+.template1-parent p{
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 2px !important;
+    font-size: 16px;
+}
+.template1-parent h3{
+    font-size: 22px;
+    font-weight: bold;
+}
+.template1-parent h6{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Template 3 CSS */
+.container1{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    
+}
+.container{
+    
+    position: relative;
+    box-shadow: 5px 21px 20px 20px #3d3f4238;
+    width: 100%;
+    margin: 50px;
+    max-width: 1000px;
+    min-height: 1000px;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    box-shadow: 0 35px 55px rgba(0,0,0,0.1);
+}
+
+.container .left_side{
+    position: relative;
+    background: #003147;
+    padding: 40px;
+
+}
+
+.profileText{
+position: relative;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+padding-bottom: 20px;
+border-bottom: 1px solid rgba(255,255,255,0.2);
+
+}
+.profileText  .imgBox{
+ position: relative;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profileText .imgBox img{
+ top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.profileText h2{
+    color: #fff;
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.4em;
+    
+}
+.contactInfo{
+    padding-top: 40px;
+
+}
+.title{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom:20px;
+}
+
+.contactInfo ul{
+    position: relative;
+}
+
+.contactInfo ul li {
+    position: relative;
+    list-style: none;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.contactInfo ul  li .icon{
+    display: inline-block;
+    width: 30px;
+    font-size: 18px;
+    color: #03a9f4;
+}
+.contactInfo ul  li span{
+    color: #fff;
+    font-weight: 300;
+
+}
+.contactInfo .education li{
+     margin-bottom: 15px;
+
+}
+.h66{
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #039af4;
+    font-weight: 500;
+}
+.p1{
+    color: #fff;
+    font-weight: 500;
+    
+}
+.percent{
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: #081921;
+    display:block;
+    margin-top: 5px;
+}
+.container .right_side{
+    position: relative;
+    background:#fefefe;
+    padding: 40px;
+    
+}
+
+.about{
+    margin-bottom: 50px;
+
+}
+.about:last-child{
+    margin-bottom:0;
+}
+.title2{
+    color:#003147;
+    text-transform: uppercase;
+    letter-spacing:1px;
+    margin-bottom:10px;
+}
+.pp{
+    color: #003147;
+
+}
+.about .box{
+   display: flex;
+   flex-direction: row;
+   margin: 20px 0; 
+}
+
+.about .box .year_company{
+
+    min-width: 150px;
+
+}
+.about .box .year_company h5{
+    text-transform: uppercase;
+    color: #848c90;
+    font-weight: 600;
+
+}
+
+.about .box .text h4{
+    text-transform: uppercase;
+    color: #2a7da2;
+    font-size: 16px;
+} 
+
+.skills .box2{
+
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.box3{
+ text-transform: uppercase;
+ font-size: 500;
+ color: #848c99;
+
+
+}
+.interest .ull{
+    
+    display: grid; 
+    
+    grid-template-columns: repeat(4,1fr);
+   
+}
+
+.interest ul li {
+    list-style: none;
+    color:#333;
+    font-weight: 500;
+    margin: 10px 0;
+  
+}
+
+@media(max-width:1000px){
+    .container{
+        margin: 10px;
+        grid-template-columns: repeat(1,1fr);
+
+
+    }
+}
+@media(max-width:600px){
+
+    .about .box{
+        flex-direction: column;
+    }
+    .about .box .year_company{
+    
+        margin-bottom: 5px;
+    }
+}

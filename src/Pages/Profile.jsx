@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
+import { serverTimestamp } from "firebase/firestore";
 import React, { useState } from "react";
 import { Textarea } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
@@ -22,8 +23,8 @@ import {
   AiFillGithub,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { v4 as uuidv4 } from "uuid";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+// import { v4 as uuidv4 } from "uuid";
+// import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 // import { getDatabase, set, ref } from "firebase/database";
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
@@ -67,10 +68,10 @@ function Profile() {
     address: "",
   });
 
-  const [photo, setPhoto] = useState(null);
-  const handleFileSelect = (e) => {
-    setPhoto(e.target.files[0]);
-  };
+  // const [photo, setPhoto] = useState(null);
+  // const handleFileSelect = (e) => {
+  //   setPhoto(e.target.files[0]);
+  // };
 
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
@@ -244,8 +245,11 @@ function Profile() {
 
     const user = auth.currentUser;
     // const database = getDatabase();
-    const personalInfoCopy = { ...personalInfo };
-    // const imagrUrlCopy = { ...imageUrl };
+    const personalInfoCopy = {
+      ...personalInfo,
+      // timestamp: serverTimestamp(),
+      // useRef: user.uid,
+    };
 
     const educationCopy = educationUser.map((edu, index) => {
       return {
@@ -296,10 +300,10 @@ function Profile() {
         await setDoc(doc(db, "users", user.uid), {
           Personal: personalInfoCopy,
           // Image: imageUrl,
-          Education: educationCopy,
-          Skills: skillCopy,
-          Experience: experienceCopy,
-          Projects: projectCopy,
+          Education: { education: educationCopy },
+          Skills: { skill: skillCopy },
+          Experience: { experience: experienceCopy },
+          Projects: { project: projectCopy },
         });
 
         toast.success(" 🙌🙌 Profile Updated SuccessFully");
