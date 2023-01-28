@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { Textarea } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
+import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase";
@@ -36,6 +37,24 @@ function Profile() {
 
   //Personal Information
   const [loading, setLoading] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [showPrevious, setShowPrevious] = useState(false);
+
+  const handleNextClick = () => {
+    if (index < 2) {
+      setIndex(index + 1);
+      setShowPrevious(true);
+    }
+  };
+
+  const handlePreviousClick = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+    if (index === 0) {
+      setShowPrevious(false);
+    }
+  };
 
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
@@ -221,12 +240,12 @@ function Profile() {
     //   return;
     // });
 
-    console.log(imageUrl);
+    // console.log(imageUrl);
 
     const user = auth.currentUser;
     // const database = getDatabase();
     const personalInfoCopy = { ...personalInfo };
-    const imagrUrlCopy = { ...imageUrl };
+    // const imagrUrlCopy = { ...imageUrl };
 
     const educationCopy = educationUser.map((edu, index) => {
       return {
@@ -300,7 +319,7 @@ function Profile() {
   return (
     <>
       <div className="  m-2 p-2 mt-4 container-fluid shadow-md  ">
-        <Tabs index={tabIndex} onChange={handleTabsChange}>
+        <Tabs index={index} onChange={setIndex}>
           <Form onSubmit={handleSubmit}>
             <TabList className="flex m-2 gap-16 font-serif text-2xl font-bold  ">
               <Tab>Personal Information </Tab>
@@ -641,10 +660,55 @@ function Profile() {
                 </div>
               </TabPanel>
             </TabPanels>
-            <Button type="submit" onClick={handleSubmit} colorScheme="blue">
-              {" "}
-              Next me{" "}
-            </Button>
+            <hr />
+            <div className=" flex space-x-96 justify-around m-5 p-3">
+              {index < 1 ? (
+                <Button
+                  variant="outline"
+                  colorScheme="red"
+                  className="float-left invisible"
+                  onClick={handlePreviousClick}
+                  leftIcon={<ArrowBackIcon />}
+                >
+                  Previous
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  colorScheme="red"
+                  className="float-left"
+                  onClick={handlePreviousClick}
+                  leftIcon={<ArrowBackIcon />}
+                >
+                  Previous
+                </Button>
+              )}
+
+              {index === 2 ? (
+                <div className=" justify-center items-center">
+                  <Button
+                    type="submit"
+                    onClick={handleSubmit}
+                    colorScheme="blue"
+                    className="content-center"
+                  >
+                    {" "}
+                    Update Profile{" "}
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex ">
+                  <Button
+                    colorScheme="red"
+                    variant="outline"
+                    rightIcon={<ArrowForwardIcon />}
+                    onClick={handleNextClick}
+                  >
+                    Next
+                  </Button>
+                </div>
+              )}
+            </div>
           </Form>
         </Tabs>
       </div>
