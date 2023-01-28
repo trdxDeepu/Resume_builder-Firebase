@@ -21,15 +21,21 @@ import {
   AiFillGithub,
   AiFillLinkedin,
 } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 // import { getDatabase, set, ref } from "firebase/database";
 import { toast } from "react-toastify";
+import Loader from "../Components/Loader";
 function Profile() {
   const [tabIndex, setTabIndex] = useState(0);
   const handleTabsChange = (index) => {
     setTabIndex(index);
   };
 
+  const auth = getAuth();
+
   //Personal Information
+  const [loading, setLoading] = useState(false);
 
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
@@ -42,12 +48,19 @@ function Profile() {
     address: "",
   });
 
+  const [photo, setPhoto] = useState(null);
+  const handleFileSelect = (e) => {
+    setPhoto(e.target.files[0]);
+  };
+
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;
     setPersonalInfo({ ...personalInfo, [name]: value });
-    if (e.target.files) {
-      setPersonalInfo({ ...personalInfo, [e.target.name]: e.target.files });
-    }
+
+    // if (e.target.files) {
+    //   setPersonalInfo({ ...personalInfo, photos: e.target.files });
+    // }
+    // console.log(personalInfo);
   };
 
   //Details of Education
@@ -157,14 +170,63 @@ function Profile() {
     setUserProject(updatedUserProject);
   };
 
+  // async function storeImage(photo) {
+  //   return new Promise((resolve, reject) => {
+  //     const storage = getStorage();
+  //     const fileName = ref(
+  //       storage,
+  //       `${auth.currentUser.uid}-${photo.name}-${uuidv4}`
+  //     );
+  //     const uploadTask = uploadBytesResumable(fileName, photo);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         // Observe state change events such as progress, pause, and resume
+  //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log("Upload is " + progress + "% done");
+  //         switch (snapshot.state) {
+  //           case "paused":
+  //             console.log("Upload is paused");
+  //             break;
+  //           case "running":
+  //             console.log("Upload is running");
+  //             break;
+  //         }
+  //       },
+  //       (error) => {
+  //         // Handle unsuccessful uploads
+  //         reject(error);
+  //       },
+  //       () => {
+  //         // Handle successful uploads on complete
+  //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           resolve(downloadURL);
+  //         });
+  //       }
+  //     );
+  //   });
+  // }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(personalInfo);
+    setLoading(true);
+    // const photo = photo[0];
 
-    const auth = getAuth();
+    // const imageUrl = await storeImage(photo).catch((error) => {
+    //   setLoading(false);
+    //   toast.error("Image not uploaded", error);
+    //   return;
+    // });
+
+    console.log(imageUrl);
+
     const user = auth.currentUser;
     // const database = getDatabase();
     const personalInfoCopy = { ...personalInfo };
+    const imagrUrlCopy = { ...imageUrl };
 
     const educationCopy = educationUser.map((edu, index) => {
       return {
@@ -214,6 +276,7 @@ function Profile() {
 
         await setDoc(doc(db, "users", user.uid), {
           Personal: personalInfoCopy,
+          // Image: imageUrl,
           Education: educationCopy,
           Skills: skillCopy,
           Experience: experienceCopy,
@@ -221,12 +284,18 @@ function Profile() {
         });
 
         toast.success(" 🙌🙌 Profile Updated SuccessFully");
+        setLoading(false);
+
         console.log(user.uid);
       }
     } catch (error) {
       console.log("err", error);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -239,22 +308,20 @@ function Profile() {
               <Tab>Experience and Projects</Tab>
             </TabList>
             <TabPanels>
-              <TabPanel className="row mt-2  font-serif">
+              <TabPanel className=" row  font-serif">
                 {/* <div className="col-md-12">
-                  <FormLabel className=" m-1 p-1 ">
-                    Upload Photo
-                  </FormLabel>
+                  <FormLabel className=" m-1 p-1 ">Upload Photo</FormLabel>
                   <input
-                   className=""
                     type="file"
-                    name="photo"
-                    accept=".jpg,.jpeg,.png"
-                    placeholder="image"
-                    value={personalInfo.photo}
-                    onChange={handlePersonalInfoChange}
+                    name="photos"
+                    id="photos"
+                    placeholder="Upload Photo"
+                   
+                    onChange={handleFileSelect}
+                    accept=".jpg,.png,.jpeg"
                   />
                 </div> */}
-                <div className="col-md-4  text-uppercase text-2xl ">
+                <div className="col-md-4  text-uppercase  ">
                   <FormControl isRequired id="firstName">
                     <FormLabel className=" m-1 p-1 strong">
                       First name
