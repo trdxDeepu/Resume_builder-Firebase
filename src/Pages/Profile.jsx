@@ -42,7 +42,7 @@ function Profile() {
   const [showPrevious, setShowPrevious] = useState(false);
 
   const handleNextClick = () => {
-    if (index < 2) {
+    if (index < 3) {
       setIndex(index + 1);
       setShowPrevious(true);
     }
@@ -190,49 +190,38 @@ function Profile() {
     setUserProject(updatedUserProject);
   };
 
-  // async function storeImage(photo) {
-  //   return new Promise((resolve, reject) => {
-  //     const storage = getStorage();
-  //     const fileName = ref(
-  //       storage,
-  //       `${auth.currentUser.uid}-${photo.name}-${uuidv4}`
-  //     );
-  //     const uploadTask = uploadBytesResumable(fileName, photo);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         // Observe state change events such as progress, pause, and resume
-  //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             break;
-  //         }
-  //       },
-  //       (error) => {
-  //         // Handle unsuccessful uploads
-  //         reject(error);
-  //       },
-  //       () => {
-  //         // Handle successful uploads on complete
-  //         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           resolve(downloadURL);
-  //         });
-  //       }
-  //     );
-  //   });
-  // }
+  const userInterestTemp = {
+    interest: "",
+  };
+
+  const [userInterest, setUserInterest] = useState([userInterestTemp]);
+
+  const addUserInterest = () => {
+    setUserInterest([...userInterest, userInterestTemp]);
+  };
+
+  const removedUserInterest = (index) => {
+    const removedUserInterest = [...userInterest];
+    removedUserInterest.splice(index, 1);
+    setUserInterest(removedUserInterest);
+  };
+
+  const handleChangeInterest = (e, index) => {
+    const updatedUserInterest = [...userInterest];
+    updatedUserInterest[index][e.target.name] = e.target.value;
+    setUserInterest(updatedUserInterest);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    // setPersonalInfo(e.target)
+    // setEducationUser(e.target)
+    // setUserSkills(e.target)
+    // setUserExp(e.target)
+    // setUserProject(e.target)
+    // setUserInterest(e.target)
+    
     // const photo = photo[0];
 
     // const imageUrl = await storeImage(photo).catch((error) => {
@@ -292,6 +281,13 @@ function Profile() {
         },
       };
     });
+    const InterestCopy = userInterest.map((inter, index) => {
+      return {
+        [`InterestUser ${index}`]: {
+          Interest: inter.interest,
+        },
+      };
+    });
 
     try {
       if (user) {
@@ -304,6 +300,7 @@ function Profile() {
           Skills: { skill: skillCopy },
           Experience: { experience: experienceCopy },
           Projects: { project: projectCopy },
+          Interest: { interest: InterestCopy },
         });
 
         toast.success(" 🙌🙌 Profile Updated SuccessFully");
@@ -329,6 +326,7 @@ function Profile() {
               <Tab>Personal Information </Tab>
               <Tab>Education and Skills</Tab>
               <Tab>Experience and Projects</Tab>
+              <Tab>Others</Tab>
             </TabList>
             <TabPanels>
               <TabPanel className=" row  font-serif">
@@ -581,15 +579,7 @@ function Profile() {
                         value={exp.startDate}
                         onChange={(e) => handleExpChange(e, index)}
                       />
-                      <Input
-                        placeholder="End Date"
-                        type="date"
-                        htmlSize={26}
-                        width="auto"
-                        name="endDate"
-                        value={exp.endDate}
-                        onChange={(e) => handleExpChange(e, index)}
-                      />
+
                       <Input
                         placeholder="Description"
                         htmlSize={26}
@@ -663,6 +653,35 @@ function Profile() {
                   ))}
                 </div>
               </TabPanel>
+              <TabPanel>
+                {userInterest.map((inter, index) => (
+                  <div className="flex space-x-6 m-4" key={index}>
+                    <Input
+                      placeholder="Interests"
+                      htmlSize={20}
+                      width="auto"
+                      name="interests"
+                      value={inter.interests}
+                      onChange={(e) => handleChangeInterest(e, index)}
+                    />
+
+                    <div className=" right-3 flex space-x-10 text-2xl m-2">
+                      <AiOutlinePlusSquare
+                        className="text-blue-500 hover:text-blue-700 active:shadow-md active:text-blue-800 "
+                        onClick={addUserInterest}
+                      />
+                      <AiFillDelete
+                        className="text-orange-500 hover:text-orange-600 active:text-orange-700 active:shadow-xl "
+                        onClick={() =>
+                          index == 0
+                            ? toast.error("😡😡😡😡")
+                            : removedUserInterest(index)
+                        }
+                      />
+                    </div>
+                  </div>
+                ))}
+              </TabPanel>
             </TabPanels>
             <hr />
             <div className=" flex space-x-96 justify-around m-5 p-3">
@@ -688,7 +707,7 @@ function Profile() {
                 </Button>
               )}
 
-              {index === 2 ? (
+              {index === 3 ? (
                 <div className=" justify-center items-center">
                   <Button
                     type="submit"
