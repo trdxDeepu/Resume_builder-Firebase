@@ -1,0 +1,33 @@
+.layout{
+    height: 100vh;
+    padding: 20px 50px;
+}
+
+.header{
+    height: 10%;
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.header h1{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 22px;
+}
+.header button{
+    border: 1px solid white !important;
+    color: rgba(255, 255, 255, 0.784) !important;
+}
+.content{
+    height: 87%;
+    border: 1px solid gray;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(128, 128, 128, 0.486);
+    padding: 10px;
+}

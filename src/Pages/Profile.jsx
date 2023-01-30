@@ -214,102 +214,66 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    // setPersonalInfo(e.target)
-    // setEducationUser(e.target)
-    // setUserSkills(e.target)
-    // setUserExp(e.target)
-    // setUserProject(e.target)
-    // setUserInterest(e.target)
-    
-    // const photo = photo[0];
-
-    // const imageUrl = await storeImage(photo).catch((error) => {
-    //   setLoading(false);
-    //   toast.error("Image not uploaded", error);
-    //   return;
-    // });
-
-    // console.log(imageUrl);
-
     const user = auth.currentUser;
-    // const database = getDatabase();
+
     const personalInfoCopy = {
       ...personalInfo,
-      // timestamp: serverTimestamp(),
-      // useRef: user.uid,
     };
 
-    const educationCopy = educationUser.map((edu, index) => {
+    const education = educationUser.map((edu) => {
       return {
-        [`educationUser ${index}`]: {
-          Qualification: edu.qualification,
-          Percentage: edu.percentage,
-          Institution: edu.institution,
-          Range: edu.year,
-        },
+        Qualification: edu.qualification,
+        Percentage: edu.percentage,
+        Institution: edu.institution,
+        Range: edu.year,
       };
     });
 
-    const skillCopy = userSkills.map((skill, index) => {
+    const skills = userSkills.map((skill) => {
       return {
-        [`SkillsUser ${index}`]: {
-          Skills: skill.skills,
-          Rating: skill.rating,
-        },
+        Skills: skill.skills,
+        Rating: skill.rating,
       };
     });
 
-    const experienceCopy = userExp.map((exp, index) => {
+    const experience = userExp.map((exp) => {
       return {
-        [`experience ${index}`]: {
-          Company: exp.company,
-          Position: exp.position,
-          StartDate: exp.startDate,
-          EndDate: exp.endDate,
-          Description: exp.description,
-        },
+        Company: exp.company,
+        Position: exp.position,
+        StartDate: exp.startDate,
+        EndDate: exp.endDate,
+        Description: exp.description,
       };
     });
 
-    const projectCopy = userProject.map((project, index) => {
+    const projects = userProject.map((project) => {
       return {
-        [`project ${index}`]: {
-          Title: project.title,
-          Year: project.year,
-          Description: project.description,
-        },
+        Title: project.title,
+        Year: project.year,
+        Description: project.description,
       };
     });
-    const InterestCopy = userInterest.map((inter, index) => {
+
+    const interests = userInterest.map((inter) => {
       return {
-        [`InterestUser ${index}`]: {
-          Interest: inter.interest,
-        },
+        Interest: inter.interest,
       };
     });
 
     try {
       if (user) {
-        console.log(user.displayName);
-
         await setDoc(doc(db, "users", user.uid), {
           Personal: personalInfoCopy,
-          // Image: imageUrl,
-          Education: { education: educationCopy },
-          Skills: { skill: skillCopy },
-          Experience: { experience: experienceCopy },
-          Projects: { project: projectCopy },
-          Interest: { interest: InterestCopy },
+          Education: education,
+          Skills: skills,
+          Experience: experience,
+          Projects: projects,
+          Interest: interests,
         });
-
-        toast.success(" 🙌🙌 Profile Updated SuccessFully");
-        setLoading(false);
-
-        console.log(user.uid);
+        toast.success("😊😊 mehsush nhi hua ");
       }
     } catch (error) {
-      console.log("err", error);
+      toast.error("ohhh u are liar ");
     }
   };
 
@@ -330,18 +294,6 @@ function Profile() {
             </TabList>
             <TabPanels>
               <TabPanel className=" row  font-serif">
-                {/* <div className="col-md-12">
-                  <FormLabel className=" m-1 p-1 ">Upload Photo</FormLabel>
-                  <input
-                    type="file"
-                    name="photos"
-                    id="photos"
-                    placeholder="Upload Photo"
-                   
-                    onChange={handleFileSelect}
-                    accept=".jpg,.png,.jpeg"
-                  />
-                </div> */}
                 <div className="col-md-4  text-uppercase  ">
                   <FormControl isRequired id="firstName">
                     <FormLabel className=" m-1 p-1 strong">
@@ -570,6 +522,7 @@ function Profile() {
                         value={exp.position}
                         onChange={(e) => handleExpChange(e, index)}
                       />
+
                       <Input
                         placeholder="Start Date"
                         type="date"
@@ -577,6 +530,16 @@ function Profile() {
                         width="auto"
                         name="startDate"
                         value={exp.startDate}
+                        onChange={(e) => handleExpChange(e, index)}
+                      />
+
+                      <Input
+                        placeholder="End Date"
+                        type="daterange"
+                        htmlSize={26}
+                        width="auto"
+                        name="endDate"
+                        value={exp.endDate}
                         onChange={(e) => handleExpChange(e, index)}
                       />
 

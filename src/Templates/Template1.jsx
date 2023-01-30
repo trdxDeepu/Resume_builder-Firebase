@@ -1,7 +1,7 @@
 import { getAuth } from "firebase/auth";
-import { collection, query, getDoc, doc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import React from "react";
-import "./template.css";
+import "../Resources/template.css";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import {

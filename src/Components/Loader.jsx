@@ -3,8 +3,13 @@ import HashLoader from "react-spinners/HashLoader";
 const Loader = () => {
   return (
     <>
-      <div className="absolute bg-transparent bg-opacity-50 flex items-center justify-center left-0 right-0 top-0 bottom-0 z-50 ">
-        <HashLoader color="#36d7b7" size={60} speedMultiplier={1} />
+      <div className="flex justify-center items-center h-screen ">
+        <HashLoader
+          color="#000000"
+          size={60}
+          speedMultiplier={1}
+          className="spinner border-2 border-gray-700 border-t-2 w-10 h-10"
+        />
       </div>
     </>
   );

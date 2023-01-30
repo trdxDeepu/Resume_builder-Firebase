@@ -4,7 +4,7 @@ import SignOut from "../SignInSignUp/SignOut";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
 import SignIn from "../SignInSignUp/SignIn";
-
+import Templates from "../Templates/Temp";
 import Signup from "../SignInSignUp/Signup";
 import ForgotPassword from "../SignInSignUp/ForgotPassword";
 import Header from "../Pages/Header";
@@ -30,6 +30,7 @@ const AppRouter = () => {
           <Route path="/contact" element={<PrivateRoute />}>
             <Route path="/contact" element={<ContactUs />} />
           </Route>
+          <Route path="/templates/:id" element={<Templates />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/forgot" element={<ForgotPassword />} />
         </Routes>

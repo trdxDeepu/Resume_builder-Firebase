@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../Firebase";
+import "../Resources/template2.css";
 import { getAuth } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
+
 const Template2 = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -31,25 +33,17 @@ const Template2 = () => {
     fetchData();
   }, []);
 
-  const educationArray = Object.entries(education).map(([key, value]) => value);
-  console.log("Education => ", educationArray);
-  const SkillsArray = Object.entries(skills).map(([key, value]) => value);
-  console.log("skill array is : ", SkillsArray);
-  const experienceArray = Object.entries(experience).map(
-    ([key, value]) => value
-  );
-  console.log("Experience array is : ", experienceArray);
-
-  const projectArray = Object.entries(projects).map(([key, value]) => value);
-  console.log("Project is  : ", projectArray);
-
-  return(
+  return (
     <>
-    <div className="resume_wrapper">
-        
-    </div>
+      <div className="resume-box">
+        <div className="left-section">
+          <img src="src/assets/" alt="" />
+        </div>
+        <div className="right-section"></div>
+        <div className="clearfix"></div>
+      </div>
     </>
-  )
+  );
 };
 
 export default Template2;
