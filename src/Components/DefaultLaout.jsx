@@ -1,4 +1,5 @@
 import React from "react";
+import "../Resources/defaultlaout.css";
 
 const DefaultLayout = (props) => {
   return (

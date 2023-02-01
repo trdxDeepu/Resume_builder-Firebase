@@ -1,21 +1,16 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import {
-  Box,
-  Button,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-} from "@chakra-ui/react";
-import { serverTimestamp } from "firebase/firestore";
+import { Button, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
+
 import React, { useState } from "react";
 import { Textarea } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
+
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { Form } from "antd";
+
 import {
   AiFillDelete,
   AiOutlinePlusSquare,
@@ -23,9 +18,7 @@ import {
   AiFillGithub,
   AiFillLinkedin,
 } from "react-icons/ai";
-// import { v4 as uuidv4 } from "uuid";
-// import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
-// import { getDatabase, set, ref } from "firebase/database";
+
 import { toast } from "react-toastify";
 import Loader from "../Components/Loader";
 function Profile() {
@@ -270,10 +263,10 @@ function Profile() {
           Projects: projects,
           Interest: interests,
         });
-        toast.success("😊😊 mehsush nhi hua ");
+        toast.success("😊😊 Profile Updated Successfully    ");
       }
     } catch (error) {
-      toast.error("ohhh u are liar ");
+      toast.error(" Not update  ");
     }
   };
 
@@ -283,7 +276,7 @@ function Profile() {
 
   return (
     <>
-      <div className="  m-2 p-2 mt-4 container-fluid shadow-md  ">
+      <div className="   m-2 p-2 mt-4 container-fluid shadow-md  ">
         <Tabs index={index} onChange={setIndex}>
           <Form onSubmit={handleSubmit}>
             <TabList className="flex m-2 gap-16 font-serif text-2xl font-bold  ">

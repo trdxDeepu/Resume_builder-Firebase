@@ -45,7 +45,7 @@ const Template1 = () => {
           <br />
           <br />
           <div className="profile">
-            <img src="src\assets\Luffy.jpeg" alt="" />
+            <img src="" alt="" />
           </div>
           <div className="content-box">
             <h2>Profile</h2>
@@ -79,9 +79,9 @@ const Template1 = () => {
           </div>
         </div>
         <div className="right-box">
-          <h1 className="font-bold text-4xl  ">
+          <h1 className="font-bold text-4xl   ">
             {personalInfo.firstName} <br />
-            <span>{personalInfo.lastName}</span>{" "}
+            <span className="mt-">{personalInfo.lastName}</span>{" "}
           </h1>
           <br />
           <h2 className="heading">Work Experience</h2>

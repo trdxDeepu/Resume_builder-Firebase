@@ -39,7 +39,7 @@ const SignIn = () => {
         navigate("/profile");
         toast.success("🙌🙌 Successfully signed in!");
 
-        //localStorage.setItem("name", userCredential.user.displayName);
+       
       }
     } catch (e) {
       toast.error("🤷‍♂️🤷‍♂️ Something went wrong.");

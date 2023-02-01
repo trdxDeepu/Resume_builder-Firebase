@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const SignOut = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const SignOut = () => {
   return (
     <li>
       <button
-        className={` cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent 
+        className={` cursor-pointer py-3 text-sm font-semibold text-white hover:text-red-600  border-b-[3px] border-b-transparent 
       ${
         (pathMatch("/sign") && "invisible") ||
         (pathMatch("/signup") && "invisible") ||

@@ -12,9 +12,9 @@
 	box-sizing: border-box;
 	font-family: monospace;
 } */
-body {
+/* body {
   background: var(--bgcolor);
-}
+} */
 .clearfix {
   clear: both;
 }

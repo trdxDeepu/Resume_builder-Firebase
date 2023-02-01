@@ -8,7 +8,7 @@ import { Flex, Box, Progress, Text } from "@chakra-ui/react";
 const Template2 = () => {
   const auth = getAuth();
   const user = auth.currentUser;
-  console.log(user.displayName);
+  
 
   const [personalInfo, setPersonalInfo] = useState({});
   const [education, setEducation] = useState([]);
